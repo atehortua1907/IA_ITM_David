@@ -48,14 +48,14 @@ print ("Función de Aptitud =>",fa)
 #Seleccion->Cruce->Mutación->Evaluación->Inserción
 for i in range(numberIterations):
     #selection - simple random selection
-    p1 = np.random.randint(numberChromosomes-1)
-    p2 = np.random.randint(numberChromosomes-1)
+    chromoSelectP1 = np.random.randint(numberChromosomes-1)
+    chromoSelectP2 = np.random.randint(numberChromosomes-1)
     
     #crossing - One Point
     if(np.random.rand() <= pc):
         cross_point = np.random.randint(numberGenes)
-        child1 = np.append(population[p1, 0:cross_point], population[p2, cross_point:])
-        child2 = np.append(population[p2, 0:cross_point], population[p1, cross_point:])
+        child1 = np.append(population[chromoSelectP1, 0:cross_point], population[chromoSelectP2, cross_point:])
+        child2 = np.append(population[chromoSelectP2, 0:cross_point], population[chromoSelectP1, cross_point:])
         
     #mutation - Bit Inversion
     if(np.random.rand() <= pm):

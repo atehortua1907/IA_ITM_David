@@ -4,7 +4,8 @@ import numpy as np
 rows = 7
 columns = 10
 
-p = np.zeros([rows, columns])
+p = np.round(np.random.random([rows, columns]))
+
 
 for fila in range(rows):
     for column in range(columns):
@@ -17,4 +18,6 @@ print(p)
 
 #------------------------------------------------------------------------
 
-#TODO: Averiguar con el profesor como crear la matriz binaria con funciones python
+#genera una matiz binaria random.random genera un aleatorio entre 0 y 1, round redonde a 0 o 1
+matrizBin = np.round(np.random.random([rows, columns]))
+print(matrizBin)
