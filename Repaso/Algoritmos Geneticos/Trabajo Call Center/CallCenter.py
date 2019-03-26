@@ -98,6 +98,7 @@ for i in np.argsort(faAssessor)[::-1]:
 
 populationUserOrder = np.zeros([numberChromosomes, numberGenes], dtype=np.float)
 count = 0
+
 for i in np.argsort(faUser):
     populationUserOrder[count] = populationUser[i]
     count = count + 1
