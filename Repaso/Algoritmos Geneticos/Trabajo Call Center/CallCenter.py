@@ -106,5 +106,9 @@ for i in np.argsort(faUser):
 print('\n------------Población final Asesor-------------\n', populationAssessor)
 print('\n------------Población Usuario----------------\n', populationUser)
 
+#Asignación de asesores a usuarios:
+#Los asesores con mayor calificación son asignados a los usuarios con las caracteristicas mas bajas.
+#En este orden de ideas, el asesor mas calificado atenderá al usuario con las preferencias de menor calificación.
 for i in range(numberChromosomes):
-    print('\nAl usuario con preferencias ',aptitude_function(populationUserOrder[i]),'Sera atendido por el asesor con caracteristicas ',aptitude_function(populationAssessorOrder[i]))
+    print('\nEl usuario con preferencias ',aptitude_function(populationUserOrder[i]),
+        'Sera atendido por el asesor con caracteristicas ',aptitude_function(populationAssessorOrder[i]))
