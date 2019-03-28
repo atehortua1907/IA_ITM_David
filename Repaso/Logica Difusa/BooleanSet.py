@@ -41,3 +41,6 @@ plt.fill(domain, bool_set_3)
 
 plt.title("Three Boolean sets for variable x")
 plt.show()
+
+##En este ejemplo simplemente se grafica 3 conjuntos boleanos.
+##Siguiente ejemplo ilustra valores intermedio de los conjuntos
