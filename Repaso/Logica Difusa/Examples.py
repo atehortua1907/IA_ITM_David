@@ -65,3 +65,35 @@ t = 16.7
 fuzzy_sets = {key_baja:(funcion_baja, params_conjunto_baja), key_media:(funcion_media, params_conjunto_media), key_alta:(funcion_alta, params_conjunto_alta)}
 
 print(fuzzyFunctions.fuzzify(t, fuzzy_sets))
+
+##Ejemplo con edades y clasificaciones
+EDAD = np.linspace(0,50, 1000)
+edad = 32
+                   
+params_conjunto_infante = {"a":0, "b":0, "c":12, "d":16}
+params_conjunto_adolescente = {"a":12, "m":16, "b":21}
+params_conjunto_adulto = {"a":16, "b":21, "c":50, "d":50}
+
+funcion_infante = "trapezoid"
+funcion_adolescente = "triangular"
+funcion_adulto = "trapezoid"
+
+f_set_infante = fuzzyFunctions.generate_fuzzy_set(EDAD, funcion_infante, params_conjunto_infante)
+f_set_adolescente = fuzzyFunctions.generate_fuzzy_set(EDAD, funcion_adolescente, params_conjunto_adolescente)
+f_set_adulto = fuzzyFunctions.generate_fuzzy_set(EDAD, funcion_adulto, params_conjunto_adulto)
+
+plt.plot(EDAD, f_set_infante, 'r')
+plt.plot(EDAD, f_set_adolescente, 'g')
+plt.plot(EDAD, f_set_adulto, 'b')
+plt.show()
+
+conjunto_infante = "infante"
+conjunto_adolescente = "adolescente"
+conjunto_adulto = "adulto"
+
+diccionario_parametros = {conjunto_infante:(funcion_infante, params_conjunto_infante), conjunto_adolescente:(funcion_adolescente, params_conjunto_adolescente), conjunto_adulto:(funcion_adulto, params_conjunto_adulto)}
+
+
+edad_fuzzy = fuzzyFunctions.fuzzify(edad, diccionario_parametros)
+
+print("la variable concreta: ", edad, " fue fusificada como: ", edad_fuzzy)
