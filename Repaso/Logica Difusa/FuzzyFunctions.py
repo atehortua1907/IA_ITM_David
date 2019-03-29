@@ -82,3 +82,97 @@ def fuzzify(x, fuzzy_sets):
         f_x[k]=m
     
     return f_x
+
+"""
+Implements Zadeh's Fuzzy Operators.
+
+Arguments:
+operator -- string with name of operator: "AND", "OR", "NOT"
+parameters -- dictionary with parameters of operator
+
+Returns:
+k -- operators value
+"""
+
+def fuzzy_operator(operator, parameters):
+    k = 0
+    if(operator == "AND"):
+        a = parameters["a"]
+        b = parameters["b"]
+        k = min(a, b)
+    elif(operator == "OR"):
+        a = parameters["a"]
+        b = parameters["b"]
+        k = max(a, b)
+    elif(operator == "NOT"):
+        a = parameters["a"]
+        k = 1 - a
+    else:
+        print("Invalid operator.")
+    
+    return k
+
+"""
+Implements fuzzy implication (MIN).
+
+Arguments:
+r -- scalar from rules solving and grouping.
+fuzzy_set -- A fuzzy set (array of values).
+
+Returns:
+s -- implication result. An array of numeric values.
+"""
+def fuzzy_implication(r, fuzzy_set):
+    val = np.minimum(r, fuzzy_set)
+    return val
+
+"""
+Implements Aggregation fuzzy operator using MAX.
+
+Arguments:
+fuzzy_sets -- A list with fuzzy_sets of output variable. All sets must have same dimension.
+
+Returns:
+val -- Aggregation result. An array of values.
+"""
+def fuzzy_aggregation(fuzzy_sets):
+    val = np.zeros([fuzzy_sets[0].shape[0]])
+    
+    for s in fuzzy_sets:
+        val = np.maximum(val, s)
+        
+    return val
+
+"""
+Implements defuzzification (centroid, bisector).
+
+Arguments:
+Y -- array with range of output variable Y
+fuzzy_set_output -- A fuzzy_set of output variable.
+method -- string with name of deffuzification method. can be "centroid", "bisector"
+
+Returns:
+val -- scalar value of crisp output variable.
+"""
+def fuzzy_defuzzy(Y, fuzzy_set_output, method="centroid"):
+   
+    if(method == "centroid"):
+        val = np.sum(Y * fuzzy_set_output) /  np.sum(fuzzy_set_output)
+    elif(method == "bisector"):
+        val = None
+    
+    return val
+
+"""
+Implements common consecuent grouping.
+
+Arguments:
+rules -- list of values from resolved antecedents of rules with same consecuent
+
+Returns:
+val -- max from rules
+"""
+
+def fuzzy_group(rules):
+    val = np.max(rules)
+    return val
