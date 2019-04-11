@@ -40,3 +40,8 @@ x[5::-2]  # reversed every other from index 5
 x = np.array([3, 1, 2])
 np.argsort(x) # devuelve los indices ascedentemente basado en los valores del array
 #array([1, 2, 0])
+
+#-----shape------#
+#Devuelve la forma de un vector, ejemplo x = np.random.rand(50, 2) * 15
+#y = x.shape[0]
+#print(y) imprime el número 50 correspondientes al número de filas del vector x

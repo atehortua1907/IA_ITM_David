@@ -56,6 +56,6 @@ data = np.zeros([m, n+1])
 data[:, 0:n] = X
 data[:, n] = Y
 
-headers = [str(i) for i in dataset.feature_names]+['target']
+headers = [featureName for featureName in dataset.feature_names]+['target']
 tabla = tabulate(data, headers=headers, tablefmt="fancy_grid", floatfmt=".2f")
 print(tabla)
