@@ -20,6 +20,8 @@ from tabulate import tabulate
 import numpy as np
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score
+from sklearn.model_selection import KFold
+from sklearn.metrics import confusion_matrix
 
 #1. Cargar Iris Dataset
 dataset = load_iris()
@@ -64,3 +66,31 @@ X_test, Y_test = X[perm_index[train_len:]], Y[perm_index[train_len:]]
 model.fit(X_train, Y_train)
 preds = model.predict(X_test)
 print('Accuracy con indices permutados tanto en entrenamiento como en test: ', accuracy_score(preds, Y_test))
+
+#2. Utilizar Knn, k = 3
+#6. Utilizar Accuracy
+#7. Utilizar K.Fold, k = 10
+n_neighbors = 3
+splits = 10
+kfolds = KFold(n_splits=splits)
+kfolds.get_n_splits(X)
+
+sum_accuracy = 0
+
+for train_index, test_index in kfolds.split(X):
+    X_train, X_test = X[train_index], X[test_index]
+    Y_train, Y_test = Y[train_index], Y[test_index]
+
+    model = KNeighborsClassifier(n_neighbors=n_neighbors)
+    model.fit(X_train, Y_train)
+    preds = model.predict(X_test)
+    sum_accuracy += accuracy_score(preds, Y_test)
+
+print(sum_accuracy / splits)
+
+
+#5. Utilizar Matriz de Confusión
+model = KNeighborsClassifier(n_neighbors=n_neighbors)
+model.fit(X, Y)
+preds = model.predict(X)
+print(confusion_matrix(preds, Y))
