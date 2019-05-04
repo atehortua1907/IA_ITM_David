@@ -45,3 +45,7 @@ np.argsort(x) # devuelve los indices ascedentemente basado en los valores del ar
 #Devuelve la forma de un vector, ejemplo x = np.random.rand(50, 2) * 15
 #y = x.shape[0]
 #print(y) imprime el número 50 correspondientes al número de filas del vector x
+
+np.random.rand() #devuelve valores aleatorios entre 0 y 1
+np.random.rand(2,2) #devuelve un array 2X2 de valores aleatorios entre 0 y 1
+np.random.randint(3,8) #Devuelve un valor aleatorio entero entre los parametros dados 3 y 8 en este caso
